@@ -1,0 +1,30 @@
+public static Node recursiveAdd(Node first, Node second, int remainder)
+{
+	if(first == null && second == null && remainder == 0)
+	{
+		return null;
+	}
+	Node resultNode = new Node();
+	int total = remainder;
+	if(first != null)
+	{
+		total += first.data;
+	}
+	if(second != null)
+	{
+		total += second.data;
+	}
+
+	resultNode.data = total%10;
+	Node newNode;
+	if(total < 10)
+	{
+		newNode = recursiveAdd(first.next, second.next, 0);
+	}
+	else
+	{
+		newNode = recursiveAdd(first.next, second.next, 1);
+	}
+	resultNode.next = newNode;
+	return resultNode;
+}
